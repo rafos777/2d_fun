@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    public float Gravity = 9.81f;
     public float vitesseY = 0;
     public float vitesseX = 0;
     public float radius = 10;
-    
+    public float Size = 0;
     public int nbrOiseauxAutour = 6;
-
     public float Rdmx = 0;
     public float Rdmy = 0;
     float x = 0, y = 0;
@@ -24,6 +24,7 @@ public class Bird : MonoBehaviour
         var y = Rdmy;
         pos.x = x; pos.y = y;
         transform.position = pos;
+        transform.localScale = new Vector3(Size,Size, Size);
     }
 
     // Update is called once per frame
@@ -64,18 +65,20 @@ public class Bird : MonoBehaviour
             float totalY = 0.0f;
 
             // trouvons la distance entre nous et cet oiseau
+            float MySize = transform.localScale.x;
+            float ItsSize = bird.transform.localScale.x;
 
             Vector3 myPos = transform.localPosition;
             Vector3 otherPos = bird.transform.localPosition;
 
             Vector3 vec = otherPos - myPos;
+            
 
             float distance = vec.magnitude;
 
-
             float influence = 0;
             // si cet oiseau est dans le rayon
-            influence = (1f / (distance+0.001f))*5f;
+            influence = (MySize*ItsSize)/(distance  +0.0001f);
             // ajouter à la moyenne
             moyenneVector = moyenneVector + vec*influence;
             nbOiseauxAutour++;

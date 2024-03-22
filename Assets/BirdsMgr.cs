@@ -28,17 +28,21 @@ public class BirdsMgr : MonoBehaviour
 
             var script = go.GetComponent<Bird>();
             script.birdsMgr = this;
-            float rdmX = (float) rnd.Next(-100, 100) ;
+            float rdmX = (float) rnd.Next(-300, 300) ;
             script.Rdmx  = rdmX;
 
-            float rdmY = (float)rnd.Next(-100, 100);
+            float rdmY = (float)rnd.Next(-300, 300);
             script.Rdmy = rdmY;
-
-            float rdmvitX = rnd.Next(-100, 100) / 200.0f;
+            
+            float rdmvitX = rnd.Next(-100, 100) / 400.0f;
             script.vitesseX = rdmvitX;
 
-            float rdmvitY = rnd.Next(-100,100) / 200.0f;
+            float rdmvitY = rnd.Next(-100,100) / 400.0f;
             script.vitesseY = rdmvitY;
+
+            float rdmSize = rnd.Next(200, 3000) / 200.0f;
+            script.Size = rdmSize;
+
 
             float[] colorN = new float[3];
             for (int g = 0; g < 3; g++)
