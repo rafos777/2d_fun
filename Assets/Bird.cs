@@ -72,15 +72,14 @@ public class Bird : MonoBehaviour
 
             float distance = vec.magnitude;
 
-            
 
+            float influence = 0;
             // si cet oiseau est dans le rayon
-            if ( distance < 50)
-            {
-                // ajouter à la moyenne
-                moyenneVector += vec;
-                nbOiseauxAutour++;
-            }
+            influence = (1f / (distance+0.001f))*5f;
+            // ajouter à la moyenne
+            moyenneVector = moyenneVector + vec*influence;
+            nbOiseauxAutour++;
+         
 
 
             /*
@@ -112,10 +111,10 @@ public class Bird : MonoBehaviour
         }
 
         Vector3 finalVector = moyenneVector / nbOiseauxAutour;
-
+        /*
         Vector3 vectorToZero = -transform.localPosition / 500.0f;
         
-        finalVector += vectorToZero;
+        finalVector += vectorToZero;*/
 
         vitesseX += finalVector.x / 1000.0f;
         vitesseY += finalVector.y / 1000.0f;
